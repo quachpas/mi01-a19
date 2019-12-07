@@ -43,7 +43,7 @@ process_image_asm:
              **********************************************************/
 			mov 	r12, rdi
 			imul 	r12, rsi /* Compteur */
-			sub 	r12, rdi
+			sub 	r12, 1
 
     boucle:
 
