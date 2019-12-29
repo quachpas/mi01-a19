@@ -43,46 +43,40 @@ process_image_asm:
              **********************************************************/
 			mov 	r12, rdi
 			imul 	r12, rsi /* Compteur */
+			sub 	r12, rdi
 
     boucle:
-    		sub 	r12, 1
-    		mov 	ebx, [rdx+r12*4] /* pixel de l'image */
+
 
     		/* Calculer l'intensité */
     		/* Stocker dans img_temp1 */
 
     		/* mov 	word ptr [rcx+r12*4-4], 0xFFFF0000 Couleur unie */
 
-
-
     		/* Multiplication R*0.21 */
-    		mov 	al, 0x36 /* Constante rouge */
-    		mul 	bl
-    		mov 	r8w, ax
-
-    		/* Shift à droite rbx pour récupérer le pixel vert */
-    		shr 	ebx, 8
+    		mov 	al, 0x36
+    		mul 	byte ptr [rdx+r12*4]
+    		shr 	ax, 8
+    		mov 	r10b, al
 
     		/* Multiplication V*0.72 */
-    		mov 	al, 0xB7 /* Constante verte */
-    		mul 	bl
-    		add 	r8w, ax
-
-    		/* Shift à droite rbx pour récupérer le pixel rouge */
-    		shr 	ebx, 8
+    		mov 	al, 0xB7
+    		mul 	byte ptr [rdx+r12*4+1]
+    		shr 	ax, 8
+    		add 	r10b, al
 
     		/* Multiplication B*0.07 */
-    		mov 	al, 0x12 /* Constante bleu */
-    		mul 	bl
-    		add 	r8w, ax
-
+    		mov 	al, 0x12
+    		mul 	byte ptr [rdx+r12*4+2]
+    		shr 	ax, 8
+    		add 	r10b, al
 
 			/* Mettre l'intensité dans img_temp1 */
-			shr 	r8w, 8
-			mov 	byte ptr [rcx+r12*4], r8b /* On récupère la partie haute */
 
-    		cmp 	r12, 0
-			ja 		boucle /* Si rax est à 0 on ŝ'arrête */
+			mov 	byte ptr [rcx+r12*4], r10b
+
+			sub 	r12, 1
+			jns 	boucle /* Si rax est à 0 on ŝ'arrête */
 
 
 			/* Fin de notre code */
