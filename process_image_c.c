@@ -41,8 +41,8 @@ void process_image_c(uint32_t img_width, uint32_t img_height,
         img_temp1[c + 3] = 0xff;
     }
  
-    /* Supprimez la ligne ci-dessous pour activer le déteceur de contours */
-    return;	
+    /* Supprimez la ligne ci-dessous pour activer le détecteur de contours */
+    //return;
 
     /* Détecteur de contours de Sobel */
     n = img_width * 4;

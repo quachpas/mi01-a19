@@ -1,5 +1,5 @@
 CC ?= gcc
-CFLAGS ?= -O0 -g 
+CFLAGS ?= -O3 -g 
 LDFLAGS = -export-dynamic
 PKGCONFIG = $(shell which pkg-config)
 GTK_INC = $(shell $(PKGCONFIG) --cflags gtk+-3.0)
