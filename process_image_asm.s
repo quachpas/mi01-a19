@@ -82,7 +82,7 @@ process_image_asm:
 			sub 	r12, 1
 			jns 	boucle /* Si rax est à 0 on ŝ'arrête */
 
-
+			jmp		fin
 			/* --------------------------------------------------------------------------------- */
 			/* TP6 R10 ET R12 NE SONT PLUS UTILES. */
 			/* R10 = RCX image temp1; R11 = img_temp2 INIT (2,2) */
@@ -186,7 +186,7 @@ boucle_colonne:
 			sub 	r12, 1 /* décrémentation i */
 			jnz 	boucle_ligne
 			/* iteration ligne i*/
-
+fin:
 			/* Fin de notre code */
 			pop 	r15
 			pop 	r14

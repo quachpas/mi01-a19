@@ -42,7 +42,7 @@ void process_image_c(uint32_t img_width, uint32_t img_height,
     }
  
     /* Supprimez la ligne ci-dessous pour activer le détecteur de contours */
-    //return;
+    return;
 
     /* Détecteur de contours de Sobel */
     n = img_width * 4;
